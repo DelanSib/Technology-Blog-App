@@ -1,0 +1,174 @@
+.jumbotron {
+  text-align: center;
+  color: aliceblue;
+  padding: 300px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+.home-section {
+  background-image: url(./pictures/1398314.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+#search {
+  color: rgb(231, 231, 231);
+  font-size: 150%;
+}
+
+#list {
+  color: rgb(231, 231, 231);
+  font-size: 250%;
+}
+
+.nav-brand {
+  color: #fff;
+  font-size: 200%;
+}
+
+#side-menu {
+  height: 100%;
+  width: 325px;
+  background: rgb(73, 73, 80);
+  top:0;
+  right: 0;
+  position:fixed;
+  border-left: rgb(243, 243, 243) 3px solid;
+  transition: 0.75s;
+  margin-right: -325px;
+}
+
+#side-menu ul {
+  list-style: none;
+  color: #fff;
+  margin-top: 50%;
+  padding: 0;
+}
+
+#side-menu ul li {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+}
+
+body {
+  transition: 0.75s;
+  background-color: rgb(191, 238, 250);
+}
+
+#group {
+  position: relative;
+  top: -250px;
+}
+
+.trending {
+  margin-top: 250px;
+}
+
+.latest {
+  height: 150px;
+}
+
+.technology {
+  background-image: url("./pictures/wp2042138-artificial-intelligence-wallpapers\ \(1\).jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 1000px;
+  height: 1000px;
+  margin-top: 300px;
+}
+
+.cardgroup {
+  margin-top: 250px;
+}
+
+.cards {
+  height: auto;
+}
+
+.new_section {
+  margin-top: 250px;
+}
+
+.new_section p {
+  margin-bottom: 150px;
+  text-align: center;
+}
+
+.technology card {
+  min-height: 100px;
+}
+
+.footer {
+  background-color: rgb(22, 22, 22);
+  margin-top: 250px;
+}
+
+#techlab {
+  text-align: center;
+}
+
+.footer {
+  height: 700px;
+}
+
+#techlab {
+  color: #fff;
+  margin-top: 100px;
+}
+
+#recent_post {
+  color: #fff;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+#tags {
+  color: #fff;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.btn-secondary {
+  margin: 10px;
+}
+
+.cardbody {
+  padding: 50px;
+}
+
+.trend {
+  margin-top: 70px;
+}
+
+.latest_post, .recent {
+  margin-top: 50px;
+}
+
+.subscribe_section {
+  background-color: rgb(49, 49, 49);
+  height: 700px;
+}
+
+.subscribe {
+padding-top: 250px;
+}
+
+.card {
+  background-color: rgb(6, 12, 24);
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.blogPost {
+  display: flex;
+  justify-content: space-between;
+}
+
