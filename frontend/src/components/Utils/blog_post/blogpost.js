@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Image, Breadcrumb, Row, Col, Button} from 'react-bootstrap'
 import Image1 from '../../../pictures/149943_hi-tech-gadgets-hd-wallpapers-1080p-19-wallpapers-hd-3d_1600x1000_h.jpg'
@@ -10,8 +10,25 @@ import {Advertisement, Icon} from 'semantic-ui-react'
 import Tags from '../../Utils/tags/tags'
 import Navbar from '../navbar/navbar'
 import Share from '../../Utils/share/Share'
+import axios from 'axios'
+import { BLOG_URL } from '../urls'
+import { Skeleton } from 'react-skeleton-loading'
 
-const Blogpost = () => {
+const Blogpost = (props) => {
+    const [fetching, setFetching] = useState(true);
+    const [activeBlog, setActiveBlog] = useState(null);
+
+    useEffect(()=>{
+        axios.get(BLOG_URL+props.match.params.slug).then(
+            res => {
+                setActiveBlog(res.data)
+            },
+            err => {
+                console.log(err)
+            }
+        );
+    },[])
+
     return (
         <div>
             <Navbar/>

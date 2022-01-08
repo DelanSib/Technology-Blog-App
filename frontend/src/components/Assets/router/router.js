@@ -12,10 +12,7 @@ const router = () => {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/category/atificial-intelligence/blog-post" exact component={Blogpost} />
-                <Route path="/category/robotics/blog-post" exact component={Blogpost} />
-                <Route path="/category/IoT/blog-post" exact component={Blogpost} />
-                <Route path="/category/gadgets/blog-post" exact component={Blogpost} />
+                <Route path="/:slug" exact component={Blogpost} />
                 <Route path="/category/atificial-intelligence" exact component={Artificial} />
                 <Route path="/category/IoT" exact component={IoT} />
                 <Route path="/category/robotics" exact component={Robotics} />

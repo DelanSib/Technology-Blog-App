@@ -172,3 +172,7 @@ padding-top: 250px;
   justify-content: space-between;
 }
 
+.textCapitalized {
+  text-transform: capitalize;
+}
+

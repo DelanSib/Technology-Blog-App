@@ -6,6 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 class BlogView(ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    lookup_field = "slug"
 
 class BlogTagView(ModelViewSet):
     queryset = BlogTag.objects.all()

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.utils.text import slugify
 
 class BlogTag(models.Model):
     title = models.CharField(max_length=50, unique=True)
@@ -11,6 +12,7 @@ class BlogTag(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(default="", editable=False, max_length=255)
     content = HTMLField()
     cover = models.ImageField(null=True, blank=True)
     author = models.ForeignKey(User, related_name="blog_author", on_delete=models.CASCADE)
@@ -24,6 +26,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.author.username}"
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 class BlogComment(models.Model):
     blog = models.ForeignKey(Blog, related_name="blog_comments", on_delete=models.CASCADE)
