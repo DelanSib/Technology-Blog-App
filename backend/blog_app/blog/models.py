@@ -12,7 +12,6 @@ class BlogTag(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(default="", editable=False, max_length=255)
     content = HTMLField()
     cover = models.ImageField(null=True, blank=True)
     author = models.ForeignKey(User, related_name="blog_author", on_delete=models.CASCADE)
@@ -27,25 +26,5 @@ class Blog(models.Model):
     def __str__(self):
         return f"{self.title} - {self.author.username}"
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title, allow_unicode=True)
-        super().save(*args, **kwargs)
 
-class BlogComment(models.Model):
-    blog = models.ForeignKey(Blog, related_name="blog_comments", on_delete=models.CASCADE)
-    comment = models.TextField()
-    name = models.CharField(max_length=255, default="Anonymous")
-    ip = models.CharField(max_length=255, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        return f"{self.blog.title} - {self.name}"
-
-class LatestPost(models.Model):
-    tags = models.ManyToManyField(BlogTag, related_name="latest_post")
-    title = models.CharField(max_length=50)
 
