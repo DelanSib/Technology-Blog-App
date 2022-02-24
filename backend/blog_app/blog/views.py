@@ -1,21 +1,16 @@
-from .serializer import (Blog, BlogTag, BlogComment, BlogSerializer,
-                         BlogTagSerializer, BlogCommentSerializer,
-                         LatestPost,LatestPostSerializer, )
-from rest_framework.viewsets import ModelViewSet
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Blog, Comment
+from .serializers import BlogSerializer
 
-class BlogView(ModelViewSet):
+class CategoryView(viewsets.ModelViewSet):
+    queryset = Blog.objects.filter()
+    serializer_class = BlogSerializer
+
+class BlogView(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
-    lookup_field = "slug"
-
-class BlogTagView(ModelViewSet):
-    queryset = BlogTag.objects.all()
-    serializer_class = BlogTagSerializer
-
-class BlogCommentView(ModelViewSet):
-    queryset = BlogComment.objects.all()
-    serializer_class = BlogCommentSerializer
-
-class LatestPostView(ModelViewSet):
-    queryset = LatestPost.objects.all()
-    serializer_class = LatestPostSerializer
+    
+    
+    #def comment(request):
+        

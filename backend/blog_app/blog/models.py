@@ -1,30 +1,32 @@
+from unicodedata import category
 from django.db import models
-from django.contrib.auth.models import User
-from tinymce.models import HTMLField
-from django.utils.text import slugify
+from core.models import User
+from taggit.managers import TaggableManager
 
-class BlogTag(models.Model):
-    title = models.CharField(max_length=50, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    
+class Blog(models.Model):
+    CATEGORIES = (
+        ('Artificial Intelligence', 'Artificial Intelligence'),
+        ('Gadgets', 'Gadgets'),
+        ('Robotics', 'Robotics'),
+        ('IoT', 'IoT')
+    )
+    title = models.CharField(max_length=255, unique = True)
+    category = models.CharField(max_length = 255, choices = CATEGORIES, blank = False)
+    content = models.TextField()
+    author = models.ForeignKey(User, verbose_name = 'the author', on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add = True)
+    tags = TaggableManager()
+    image = models.ImageField(upload_to = 'media/images', null = True)
+    
     def __str__(self):
         return self.title
+    
+class Comment(models.Model):
+    name = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    blog_post_title = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+    content = models.TextField()
+    date_created = models.DateTimeField(auto_now_add = True)
+    
 
-class Blog(models.Model):
-    title = models.CharField(max_length=50, unique=True)
-    content = HTMLField()
-    cover = models.ImageField(null=True, blank=True)
-    author = models.ForeignKey(User, related_name="blog_author", on_delete=models.CASCADE)
-    tags = models.ManyToManyField(BlogTag, related_name="blog_tag")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    comments_number = models.IntegerField()
-
-    class Meta:
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        return f"{self.title} - {self.author.username}"
-
-
-
+    

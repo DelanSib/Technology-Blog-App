@@ -1,13 +1,21 @@
-from django.urls import path, include
-from .views import (BlogView, BlogCommentView, BlogTagView, LatestPostView, )
-from rest_framework.routers import DefaultRouter
+from django.conf import settings
+from django.urls import include, path
+from django.conf.urls.static import static
+from rest_framework_nested import routers
+from .views import CategoryView, BlogView
 
-router = DefaultRouter()
-router.register('blogs', BlogView)
-router.register('blog_comments', BlogCommentView)
-router.register('blog_tags', BlogTagView)
-router.register('latest_post_view', LatestPostView)
+router = routers.DefaultRouter()
+router.register(r'category', CategoryView)
+
+blogs_router = routers.NestedDefaultRouter(router, r'category', lookup='category')
+blogs_router.register(r'blogs', BlogView, basename='blog')
 
 urlpatterns = [
-    path('', include(router.urls))
+        path('__debug__/', include('debug_toolbar.urls')),
+        path('api/', include('rest_framework.urls')),
+        path(r'', include(router.urls)),
+        path(r'', include(blogs_router.urls)),
+     
+    
+    
 ]

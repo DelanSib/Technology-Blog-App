@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Kudakwashe\Desktop\React app 1\backend\venv
+set VIRTUAL_ENV=C:\Users\Python.DESKTOP-2DNO57I\Desktop\Technology-Blog-App\Technology-Blog-App\backend\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
